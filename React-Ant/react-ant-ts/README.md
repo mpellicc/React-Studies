@@ -9,4 +9,4 @@ Clicking on a product in the list, brings you to the detail page of it, where yo
 Creating a product is made by a simple form that change the list in the state of the Products component.
 
 
-###### Disclaimer: this is not finished yet, but the description is about the completed app. At the moment, some functionalities may miss.
+###### Disclaimer: this is not finished yet, but the description is about the completed app. At the moment, some functionalities may miss/not work.
