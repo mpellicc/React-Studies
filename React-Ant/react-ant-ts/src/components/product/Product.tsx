@@ -75,13 +75,9 @@ function Products() {
 
   return (
       <Layout>
-        <Sider 
-            collapsible 
-            collapsed={collapsed} 
-            onCollapse={onCollapse}
-        >
-          <Menu mode="inline">{formattedList}</Menu>
-        </Sider>
+        <Header>
+          <Menu theme="dark" mode="horizontal">{formattedList}</Menu>
+        </Header>
         <Layout>
           <Content style={{ margin: "0 16px" }}>
             <Row>
