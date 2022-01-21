@@ -75,7 +75,11 @@ function Products() {
 
   return (
       <Layout>
-        <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
+        <Sider 
+            collapsible 
+            collapsed={collapsed} 
+            onCollapse={onCollapse}
+        >
           <Menu mode="inline">{formattedList}</Menu>
         </Sider>
         <Layout>
