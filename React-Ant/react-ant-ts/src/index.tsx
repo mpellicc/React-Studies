@@ -1,6 +1,8 @@
-import React from 'react';
-import ReactDOM, { render } from 'react-dom';
-import App from './App';
+import React from "react";
+import ReactDOM, { render } from "react-dom";
+import App from "./App";
+
+import "antd/dist/antd.css"
 import "./index.css"
 
 ReactDOM.render(

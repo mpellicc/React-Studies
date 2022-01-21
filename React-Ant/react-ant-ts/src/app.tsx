@@ -1,10 +1,10 @@
-import Product from "./components/product/Product";
+import Products from "./components/product/Product";
 
 function App() {
     
     return (
         <div>
-            <Product />
+            <Products />
         </div>
     );
 }

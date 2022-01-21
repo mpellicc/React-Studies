@@ -1,6 +1,12 @@
 import { useState } from "react";
 
-function Product() {
+import { Product } from "../../types/Product.type";
+import ProductImage from "./ProductImage";
+import ProductDetails from "./ProductDetails";
+
+import { Row, Col } from "antd";
+
+function Products() {
     const [products, setProducts] = useState(
         [
             {
@@ -48,19 +54,21 @@ function Product() {
         ]
     );
 
-    const list = products.slice();
-    const formattedList = list.map((item) => {
-        <li>{item.name}</li>
-    });
+    const list: Array<Product> = products.slice();
+    const formattedList = list.map((item) => 
+        <li key='id'>{item.name}</li>
+    );
     
     return (
-        <div>
-            <h1>Product Component</h1>
-            <ul>
-                {formattedList}
-            </ul>
-        </div>
+        <Row>
+            <Col span={12}>
+                <ProductImage id={1} />
+            </Col>
+            <Col span={12}>
+                <ProductDetails id={1} list={list} />
+            </Col>
+        </Row>
     );
 }
 
-export default Product;
+export default Products;
