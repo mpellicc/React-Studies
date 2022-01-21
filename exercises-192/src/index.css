@@ -1,0 +1,59 @@
+div.productapp {
+    margin: auto;
+    display: grid;
+}
+
+.products table { 
+    float: left;
+    width: 65%;
+    border: 1px solid #ddd;
+    border-left: 0;
+    border-radius: 4px;
+    border-spacing: 0px;
+}
+.products tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+.products td {
+    padding: 5px 4px 6px 4px; 
+    text-align: center;
+    vertical-align: top;
+    border-left: 1px solid #ddd; 
+    border-top: 1px solid #ddd;    
+}
+.products table button {
+    width: 40%;
+}
+
+.products form {
+    float: left;
+    width: 34%;
+    text-align: center;
+    box-sizing: border-box;
+}
+.products input {
+    padding: 4px;
+    display: inline-block;
+    width: 100%;
+    margin: 4px;
+    box-sizing: inherit;
+}
+.products input[type=text] {
+    border: 2px solid #ddd;
+    border-radius: 20px;
+}
+.products input[type=text]:focus {
+    border: 3px solid red;
+}
+.products input[type=submit] {
+    max-width: 99%;
+    border-radius: 20px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }

@@ -1,0 +1,61 @@
+.square-box {
+    margin: auto;
+    position: relative;
+    background-color: #ffc900;
+    width: 20%;
+}
+
+.square-box:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+
+.square-content {
+    margin: auto;
+    position: absolute;
+    padding: 40%;
+    text-align: center;
+}
+
+.navbar {
+    margin: 20px;
+    text-align: center;
+}
+
+.exercise {
+    text-align: center;
+}
+
+.exercise ul {
+    text-align: center;
+    list-style-position: inside;
+}
+
+.exercise table { 
+    text-align: center;
+    border: 1px solid #ddd;
+    border-collapse: separate;
+    border-left: 0;
+    border-radius: 4px;
+    border-spacing: 0px;
+}
+.exercise tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+.exercise td {
+    padding: 5px 4px 6px 4px; 
+    text-align: left;
+    vertical-align: top;
+    border-left: 1px solid #ddd;    
+}
+.exercise td {
+    border-top: 1px solid #ddd;    
+}
+
+.exercise form label{
+    display: block;
+    margin: 10px;
+}
