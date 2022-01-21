@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-function Product(props) {
+function Product() {
     const [products, setProducts] = useState(
         [
             {
@@ -48,12 +48,19 @@ function Product(props) {
         ]
     );
 
-    const list: Array<Object> = products.slice();
+    const list = products.slice();
+    const formattedList = list.map((item) => {
+        <li>{item.name}</li>
+    });
     
     return (
-        <h1>Product Component</h1>
+        <div>
+            <h1>Product Component</h1>
+            <ul>
+                {formattedList}
+            </ul>
+        </div>
     );
-
 }
 
 export default Product;

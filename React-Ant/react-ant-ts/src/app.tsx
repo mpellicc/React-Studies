@@ -1,6 +1,6 @@
 import Product from "./components/product/Product";
 
-function App(props) {
+function App() {
     
     return (
         <div>
