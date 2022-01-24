@@ -55,16 +55,16 @@ const mainRoutes = {
     element: <MainLayout />,
     children: [
         { path: '/', element: <Home /> },
-        { path: '/products', element: <Products /> },
+        { path: '/product', element: <Products /> },
         { path: '/create', element: <h1>CREATE</h1> },
     ],
 };
 
 const productsRoutes = {
-    path: '/products',
+    path: '/product',
     element: <Products />,
     children: [
-        { path: '/products', element: <ProductsList list={products} /> },
+        { path: '/product', element: <ProductsList list={products} /> },
         { path: ':id', element: <SingleProduct list={products} /> },
     ],
 };

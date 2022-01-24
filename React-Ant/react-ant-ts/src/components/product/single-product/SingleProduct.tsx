@@ -20,7 +20,7 @@ function SingleProduct(props: Props) {
 
   const formattedList = list.map((item) => (
     <Menu.Item key={item.id}>
-      <Link to={`/products/${item.id}`}>{item.name}</Link>
+      <Link to={`/product/${item.id}`}>{item.name}</Link>
     </Menu.Item>
   ));
 
@@ -50,7 +50,7 @@ function SingleProduct(props: Props) {
       <Header>
         <Menu mode="horizontal">
           <Menu.Item key="back">
-            <Link to="/products">Back to List</Link>
+            <Link to="/product">Back to List</Link>
           </Menu.Item>
           {formattedList}
         </Menu>

@@ -13,7 +13,7 @@ function Home() {
           </Link>
         </Col>
         <Col span={12}>
-          <Link to="/products">
+          <Link to="/product">
             <Button size="large" shape="round">
               VIEW
             </Button>
