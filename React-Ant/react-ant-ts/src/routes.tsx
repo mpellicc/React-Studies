@@ -1,9 +1,11 @@
 import { Navigate, useRoutes } from 'react-router-dom';
 import MainLayout from './components/main/MainLayout';
 import Home from './components/main/Home';
-import Products from './components/product/Products';
 import ProductsList from './components/product/ProductsList';
 import SingleProduct from './components/product/single-product/SingleProduct';
+import ProductLayout from './components/product/ProductLayout';
+import { Content } from 'antd/lib/layout/layout';
+import CreateProduct from './components/product/CreateProduct';
 
 const products = [
     {
@@ -55,17 +57,17 @@ const mainRoutes = {
     element: <MainLayout />,
     children: [
         { path: '/', element: <Home /> },
-        { path: '/product', element: <Products /> },
-        { path: '/create', element: <h1>CREATE</h1> },
+        { path: 'product', element: <Navigate to="/product" /> },
     ],
 };
 
 const productsRoutes = {
     path: '/product',
-    element: <Products />,
+    element: <ProductLayout />,
     children: [
-        { path: '/product', element: <ProductsList list={products} /> },
+        { path: '', element: <ProductsList list={products} /> },
         { path: ':id', element: <SingleProduct list={products} /> },
+        { path: 'create', element: <CreateProduct /> },
     ],
 };
 
@@ -73,7 +75,9 @@ function Routing() {
     const routing = useRoutes([mainRoutes, productsRoutes]);
 
     return (
-        <>{routing}</>
+        <Content style={{ padding: '0 50px', marginTop: 64 }}>
+            {routing}
+        </Content>
     );
 }
 

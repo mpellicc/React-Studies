@@ -1,26 +1,42 @@
-import { List } from "antd";
-import { Link } from 'react-router-dom';
+import { Input, List } from "antd";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-import { Product } from "./Products";
+import { Product } from "./ProductLayout";
+
+const { Search } = Input;
 
 type Props = {
-    list: Array<Product>,
-}
+  list: Array<Product>;
+};
 
 function ProductsList(props: Props) {
-    const { list } = props;
-    const formattedList = list.map((item) => 
+  const { list } = props;
+  const [ filterList, setFilterList ] = useState(list);
+
+  const formattedList = filterList.map((item) => (
     <List.Item key={item.id}>
-        <Link to={`/product/${item.id}`}>
-            {item.name}
-        </Link>
+      <Link to={`/product/${item.id}`}>{item.name}</Link>
     </List.Item>
-    );
-    return (
-        <List>
-            {formattedList}
-        </List>
-    );
+  ));
+
+  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setFilterList(list.filter((item) => item.name.toLowerCase().startsWith(e.target.value.toLowerCase())));
+  }
+
+  return (
+    <div>
+      <Input
+        type="text"
+        placeholder="Search product"
+        allowClear
+        onChange={onChange}
+      />
+      <List>
+        {formattedList}
+      </List>
+    </div>
+  );
 }
 
 export default ProductsList;

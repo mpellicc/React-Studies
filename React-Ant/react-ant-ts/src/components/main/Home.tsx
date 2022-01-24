@@ -4,20 +4,47 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <>
-      <Row align="middle">
-        <Col span={12}>
-          <Link to="/create">
-            <Button type="primary" size="large" shape="round">
-              CREATE
-            </Button>
-          </Link>
+      <Row>
+        <Col span={24}>
+          <div
+            style={{
+              textAlign: "center",
+              fontSize: "33px",
+              fontWeight: "bold",
+            }}
+          >
+            HOME
+          </div>
+        </Col>
+      </Row>
+      <Row justify="center" align="middle" style={{
+            height: '100%',
+        }}>
+        <Col span={12} >
+          <div
+            style={{
+              textAlign: "center",
+            }}
+          >
+            <Link to="/product/create">
+              <Button type="primary" size="large" shape="round">
+                CREATE
+              </Button>
+            </Link>
+          </div>
         </Col>
         <Col span={12}>
-          <Link to="/product">
-            <Button size="large" shape="round">
-              VIEW
-            </Button>
-          </Link>
+          <div
+            style={{
+              textAlign: "center",
+            }}
+          >
+            <Link to="/product">
+              <Button size="large" shape="round">
+                VIEW
+              </Button>
+            </Link>
+          </div>
         </Col>
       </Row>
     </>

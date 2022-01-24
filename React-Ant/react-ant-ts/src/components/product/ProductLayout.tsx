@@ -10,7 +10,7 @@ export type Product = {
   price: number;
 };
 
-function Products() {
+function ProductLayout() {
   const [products, setProducts] = useState([
     {
       id: 1,
@@ -64,4 +64,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default ProductLayout;

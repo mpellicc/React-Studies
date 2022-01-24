@@ -1,6 +1,6 @@
 import { Divider, Typography, Button } from "antd";
 
-import { Product } from "../Products";
+import { Product } from "../ProductLayout";
 
 type Props = {
   item: Product,
