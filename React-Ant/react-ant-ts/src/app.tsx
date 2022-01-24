@@ -1,11 +1,10 @@
-import Products from "./components/product/Product";
+import Routing from "./routes";
+
 
 function App() {
     
     return (
-        <div>
-            <Products />
-        </div>
+        <Routing />
     );
 }
 

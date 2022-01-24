@@ -2,19 +2,20 @@ import React from "react";
 import ReactDOM, { render } from "react-dom";
 import App from "./App";
 import {
-    BrowserRouter,
+    BrowserRouter as Router,
     Route,
     Link,
     Routes,
     Outlet,
-  } from "react-router-dom";
+} from "react-router-dom";
 
 import "antd/dist/antd.css"
 import "./index.css"
 
+
 ReactDOM.render(
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>, 
+    <Router>
+    <App />
+    </Router>, 
     document.getElementById("root")
 );

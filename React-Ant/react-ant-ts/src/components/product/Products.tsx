@@ -1,10 +1,6 @@
 import { useState } from "react";
-
-import ProductImage from "./ProductImage";
-import ProductDetails from "./ProductDetails";
-
-import { Layout, Menu, Row, Col } from "antd";
-const { Header, Content, Footer, Sider } = Layout;
+import { Link, Outlet } from "react-router-dom";
+import ProductsList from "./ProductsList";
 
 export type Product = {
   id: number;
@@ -59,38 +55,12 @@ function Products() {
       price: 4.9,
     },
   ]);
-
   const list: Array<Product> = products.slice();
-  const formattedList = list.map((item) => (
-    <Menu.Item key={item.id}>
-      {item.name}
-    </Menu.Item>
-  ));
-
-  const [collapsed, setCollapsed] = useState(false);
-
-  function onCollapse(collapsed: boolean) {
-    setCollapsed(collapsed);
-  }
 
   return (
-      <Layout>
-        <Header>
-          <Menu theme="dark" mode="horizontal">{formattedList}</Menu>
-        </Header>
-        <Layout>
-          <Content style={{ margin: "0 16px" }}>
-            <Row>
-              <Col span={12}>
-                <ProductImage id={1} />
-              </Col>
-              <Col span={12}>
-                <ProductDetails id={1} list={list} />
-              </Col>
-            </Row>
-          </Content>
-        </Layout>
-      </Layout>
+    <>
+      <Outlet />
+    </>
   );
 }
 
