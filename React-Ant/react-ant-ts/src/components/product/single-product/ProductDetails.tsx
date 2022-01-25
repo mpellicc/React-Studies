@@ -1,8 +1,8 @@
 import { Divider, Typography, Button, Col, Image, Spin, Row } from "antd";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import ProductService from "../../../services/ProductsService";
-
+import { LeftOutlined } from '@ant-design/icons'
 import { Product } from "../../../types/Product";
 
 function ProductDetails() {
@@ -37,7 +37,10 @@ function ProductDetails() {
   } else {
     return (
       <Row>
-        <Col span={10} style={{ textAlign: "center" }}>
+        <Col span={1}>
+          <Link to='/products'><Button icon={<LeftOutlined />}>Back</Button></Link>
+        </Col>
+        <Col span={9} style={{ textAlign: "center" }}>
           <Image src={product.image} width={300} />
         </Col>
         <Col span={14}>
