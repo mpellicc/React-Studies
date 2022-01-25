@@ -1,39 +1,52 @@
 import { Input, List } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import ProductService from "../../services/ProductsService";
 import { Product } from "../../types/Product";
 
+function ProductsList() {
+  const [list, setList] = useState<Array<Product>>([]);
 
-type Props = {
-  list: Array<Product>;
-};
+  useEffect(() => {
+    ProductService.getAll()
+      .then((res: any) => {
+        setList(res.data);
+      })
+      .catch((e: Error) => console.log(e));
+  }, []);
 
-function ProductsList(props: Props) {
-  const { list } = props;
-  const [ filterList, setFilterList ] = useState(list);
-
-  const formattedList = filterList.map((item) => (
+  const formattedList = list.map((item) => (
     <List.Item key={item.id}>
       <Link to={`/products/${item.id}`}>{item.title}</Link>
     </List.Item>
   ));
 
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setFilterList(list.filter((item) => item.title.toLowerCase().startsWith(e.target.value.toLowerCase())));
+    const filterList: Array<Product> = list.filter((item) =>
+      item.title.toLowerCase().startsWith(e.target.value.toLowerCase())
+    );
+    setList(filterList);
   }
 
   return (
     <div>
-      <Input
-        type="text"
-        placeholder="Search product"
-        allowClear
-        onChange={onChange}
-      />
-      <List>
-        {formattedList}
-      </List>
+      <List
+        header={
+          <Input
+            type="text"
+            placeholder="Search product"
+            allowClear
+            onChange={onChange}
+          />
+        }
+        split
+        dataSource={list}
+        renderItem={(item) => (
+          <List.Item key={item.id}>
+            <Link to={`/products/${item.id}`}>{item.title}</Link>
+          </List.Item>
+        )}
+      ></List>
     </div>
   );
 }

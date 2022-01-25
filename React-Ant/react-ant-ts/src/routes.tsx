@@ -20,8 +20,8 @@ const productsRoutes = {
     path: '/products',
     element: <ProductLayout />,
     children: [
-        { path: '', element: <ProductsList list={[]} /> },
-        { path: ':id', element: <SingleProduct list={[]} /> },
+        { path: '', element: <ProductsList /> },
+        { path: ':id', element: <SingleProduct /> },
         { path: 'create', element: <CreateProduct /> },
     ],
 };
