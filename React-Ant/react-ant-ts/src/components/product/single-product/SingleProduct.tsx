@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import { Product } from "../ProductLayout";
+import { Product } from "../../../types/Product";
 import ProductImage from "./ProductImage";
 import ProductDetails from "./ProductDetails";
 

@@ -2,9 +2,8 @@ import { Input, List } from "antd";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { Product } from "./ProductLayout";
+import { Product } from "../../types/Product";
 
-const { Search } = Input;
 
 type Props = {
   list: Array<Product>;
@@ -16,12 +15,12 @@ function ProductsList(props: Props) {
 
   const formattedList = filterList.map((item) => (
     <List.Item key={item.id}>
-      <Link to={`/products/${item.id}`}>{item.name}</Link>
+      <Link to={`/products/${item.id}`}>{item.title}</Link>
     </List.Item>
   ));
 
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setFilterList(list.filter((item) => item.name.toLowerCase().startsWith(e.target.value.toLowerCase())));
+    setFilterList(list.filter((item) => item.title.toLowerCase().startsWith(e.target.value.toLowerCase())));
   }
 
   return (
