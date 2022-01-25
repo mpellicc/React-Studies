@@ -1,4 +1,4 @@
-import { Form, Button, Input, InputNumber, Upload, Space } from "antd";
+import { Form, Button, Input, InputNumber, Upload, Space, Alert, Row, Col, Divider } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import { Product } from "../../types/Product";
 import { ChangeEvent, useEffect, useState } from "react";
@@ -15,6 +15,8 @@ function CreateProduct() {
   };
 
   const [product, setProduct] = useState<Product>(initialProductState);
+  const [created, setCreated] = useState<boolean>(false);
+  const [visible, setVisible] = useState<boolean>(true);
   const [form] = Form.useForm();
 
   useEffect(() => {
@@ -34,19 +36,22 @@ function CreateProduct() {
 
   function saveProduct(values: any) {
     const { title, price, category, description } = values;
-    console.log('in save...');
-    
     let item = {
       title: title,
       price: price,
       category: category,
       description: description,
     }
-    console.log(item);
     
     ProductService.create(item)
-      .then((response: any) => {
-        console.log(response.item);
+      .then((res: any) => {
+        setProduct({
+          title: res.data.title,
+          price: res.data.price,
+          category: res.data.category,
+          description: res.data.description,
+        });
+        setCreated(true);
       })
       .catch((e: Error) => {
         console.log(e);
@@ -54,17 +59,25 @@ function CreateProduct() {
   }
 
   function newProduct() {
-    console.log('in reset...');
     form.resetFields();
     setProduct(initialProductState);
-    console.log(product);
+  }
+
+  function handleClose() {
+    setVisible(false);
   }
 
   return (
     <>
-      <div style={{ textAlign: "center" }}>
+    <Row>
+      <Col style={{ textAlign: "center" }} span={24}>
         <h1>CREATE</h1>
-      </div>
+      {created && visible ? <Alert message='Product created!' type='success' showIcon style={{ width: '20%', }} closable afterClose={handleClose}/> : null}
+      </Col>
+    </Row>
+    <Divider />
+    <Row>
+      <Col span={24}>
       <Form
         form={form}
         name="create-product"
@@ -132,6 +145,8 @@ function CreateProduct() {
           </Space>
         </Form.Item>
       </Form>
+      </Col>
+      </Row>
     </>
   );
 }
