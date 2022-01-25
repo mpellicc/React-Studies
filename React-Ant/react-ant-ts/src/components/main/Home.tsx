@@ -26,7 +26,7 @@ function Home() {
               textAlign: "center",
             }}
           >
-            <Link to="/product/create">
+            <Link to="/products/create">
               <Button type="primary" size="large" shape="round">
                 CREATE
               </Button>
@@ -39,7 +39,7 @@ function Home() {
               textAlign: "center",
             }}
           >
-            <Link to="/product">
+            <Link to="/products">
               <Button size="large" shape="round">
                 VIEW
               </Button>

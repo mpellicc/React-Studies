@@ -13,8 +13,8 @@ function Navbar() {
         >
             <Menu mode="horizontal">
                 <Menu.Item key="0"><Link to="/">Home</Link></Menu.Item>
-                <Menu.Item key="1"><Link to="/product/create">Create</Link></Menu.Item>
-                <Menu.Item key="2"><Link to="/product">View List</Link></Menu.Item>
+                <Menu.Item key="1"><Link to="/products/create">Create</Link></Menu.Item>
+                <Menu.Item key="2"><Link to="/products">View List</Link></Menu.Item>
             </Menu>
         </Header>
     );

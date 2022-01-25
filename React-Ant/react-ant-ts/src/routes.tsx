@@ -57,12 +57,12 @@ const mainRoutes = {
     element: <MainLayout />,
     children: [
         { path: '/', element: <Home /> },
-        { path: 'product', element: <Navigate to="/product" /> },
+        { path: 'products', element: <Navigate to="/products" /> },
     ],
 };
 
 const productsRoutes = {
-    path: '/product',
+    path: '/products',
     element: <ProductLayout />,
     children: [
         { path: '', element: <ProductsList list={products} /> },

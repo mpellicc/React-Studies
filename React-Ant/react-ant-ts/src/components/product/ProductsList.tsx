@@ -16,7 +16,7 @@ function ProductsList(props: Props) {
 
   const formattedList = filterList.map((item) => (
     <List.Item key={item.id}>
-      <Link to={`/product/${item.id}`}>{item.name}</Link>
+      <Link to={`/products/${item.id}`}>{item.name}</Link>
     </List.Item>
   ));
 
