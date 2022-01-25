@@ -72,8 +72,12 @@ function CreateProduct() {
     <Row>
       <Col style={{ textAlign: "center" }} span={24}>
         <h1>CREATE</h1>
-      {created && visible ? <Alert message='Product created!' type='success' showIcon style={{ width: '20%', }} closable afterClose={handleClose}/> : null}
       </Col>
+    </Row>
+    <Row>
+    <Col style={{ textAlign: "center", }} span={12} offset={6}>
+    {created && visible ? <Alert message='Product created!' type='success' showIcon closable afterClose={handleClose}/> : null}
+    </Col>
     </Row>
     <Divider />
     <Row>
