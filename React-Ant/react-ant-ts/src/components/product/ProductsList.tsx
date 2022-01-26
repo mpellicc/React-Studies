@@ -6,23 +6,24 @@ import { Product } from "../../types/Product";
 
 function ProductsList() {
   const [list, setList] = useState<Array<Product>>([]);
+  const [filteredList, setFilteredList] = useState<Array<Product>>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     ProductService.getAll()
       .then((res: any) => {
         setList(res.data);
-        console.log(list);
+        setFilteredList(res.data);
         setLoading(false);
       })
       .catch((e: Error) => console.log(e));
-  }, []);
+  }, []); 
   
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const filterList: Array<Product> = list.filter((item) =>
+    const temp: Array<Product> = list.filter((item) =>
       item.title.toLowerCase().startsWith(e.target.value.toLowerCase())
     );
-    setList(filterList);
+    setFilteredList(temp);
   }
 
   return (
@@ -38,7 +39,7 @@ function ProductsList() {
             />
           }
           split
-          dataSource={list}
+          dataSource={filteredList}
           renderItem={(item) => (
             <List.Item key={item.id}>
               <Link to={`/products/${item.id}`}>{item.title}</Link>

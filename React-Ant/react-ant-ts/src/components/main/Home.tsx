@@ -1,26 +1,28 @@
 import { Button, Row, Col } from "antd";
+import Title from "antd/lib/typography/Title";
 import { Link } from "react-router-dom";
 
 function Home() {
   return (
     <>
       <Row>
-        <Col span={24}>
-          <div
-            style={{
-              textAlign: "center",
-              fontSize: "33px",
-              fontWeight: "bold",
-            }}
-          >
-            HOME
-          </div>
+        <Col
+          style={{
+            textAlign: "center",
+          }}
+          span={24}
+        >
+          <Title>HOME</Title>
         </Col>
       </Row>
-      <Row justify="center" align="middle" style={{
-            height: '100%',
-        }}>
-        <Col span={12} >
+      <Row
+        justify="center"
+        align="middle"
+        style={{
+          height: "100%",
+        }}
+      >
+        <Col span={12}>
           <div
             style={{
               textAlign: "center",

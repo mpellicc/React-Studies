@@ -1,23 +1,36 @@
 import { Menu } from "antd";
 import { Header } from "antd/lib/layout/layout";
-import { Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 function Navbar() {
-    return (
-        <Header style={{
-            position: 'fixed',
-            width: '100%',
-            zIndex: 1,
-            padding: '0',
-        }}
-        >
-            <Menu mode="horizontal">
-                <Menu.Item key="0"><Link to="/">Home</Link></Menu.Item>
-                <Menu.Item key="1"><Link to="/products/create">Create</Link></Menu.Item>
-                <Menu.Item key="2"><Link to="/products">View List</Link></Menu.Item>
-            </Menu>
-        </Header>
-    );
+  const location = useLocation();
+
+  return (
+    <Header
+      style={{
+        position: "fixed",
+        width: "100%",
+        zIndex: 1,
+        padding: "0",
+      }}
+    >
+      <Menu
+        mode="horizontal"
+        defaultSelectedKeys={["/"]}
+        selectedKeys={[location.pathname]}
+      >
+        <Menu.Item key="/">
+          <Link to="/">Home</Link>
+        </Menu.Item>
+        <Menu.Item key="/products/create">
+          <Link to="/products/create">Create</Link>
+        </Menu.Item>
+        <Menu.Item key="/products">
+          <Link to="/products">View List</Link>
+        </Menu.Item>
+      </Menu>
+    </Header>
+  );
 }
 
-export default Navbar
+export default Navbar;
