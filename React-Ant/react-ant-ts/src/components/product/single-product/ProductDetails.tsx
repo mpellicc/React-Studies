@@ -41,7 +41,7 @@ function ProductDetails() {
           <Link to='/products'><Button icon={<LeftOutlined />}>Back</Button></Link>
         </Col>
         <Col span={9} style={{ textAlign: "center" }}>
-          <Image src={product.image} width={300} />
+          <Image src={product.image} width='30%' />
         </Col>
         <Col span={14}>
           <Typography.Title level={1}>{product.title}</Typography.Title>

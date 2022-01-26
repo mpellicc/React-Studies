@@ -9,6 +9,7 @@ import {
   Row,
   Col,
   Divider,
+  message,
 } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import { Product } from "../../types/Product";
@@ -35,16 +36,10 @@ function CreateProduct() {
     form.setFieldsValue(initialProductState);
   });
 
-  /*
-  function handleInputChange(e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) {
-    const { name, value } = e.target;
-    setProduct({ ...product, [name]: value });
+  function success() {
+    message.success('Product created!');
+    setCreated(false);
   }
-
-  function handleNumberChange(value: number) {
-    setProduct({...product, price: value});
-  }
-  */
 
   function saveProduct(values: any) {
     const { title, price, category, description } = values;
@@ -64,6 +59,7 @@ function CreateProduct() {
           description: res.data.description,
         });
         setCreated(true);
+        success();
       })
       .catch((e: Error) => {
         console.log(e);
@@ -77,6 +73,7 @@ function CreateProduct() {
 
   function handleClose() {
     setVisible(false);
+    setCreated(false);
   }
 
   return (
@@ -86,7 +83,7 @@ function CreateProduct() {
           <Title>CREATE</Title>
         </Col>
       </Row>
-      <Row>
+      {/* <Row>
         <Col style={{ textAlign: "center" }} span={12} offset={6}>
           {created && visible ? (
             <Alert
@@ -98,7 +95,7 @@ function CreateProduct() {
             />
           ) : null}
         </Col>
-      </Row>
+      </Row> */}
       <Divider />
       <Row>
         <Col span={24}>
