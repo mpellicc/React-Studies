@@ -13,6 +13,10 @@ function create(item: Product) {
     return http.post<Product>('/products', item);
 }
 
+function update(id: number, data: Product) {
+    return http.put<any>(`/products/${id}`, data);
+}
+
 function remove(id: number) {
     return http.delete<any>(`/products/${id}`);
 }
@@ -21,6 +25,7 @@ const ProductService = {
     getAll,
     get,
     create,
+    update,
     remove,
 }
 

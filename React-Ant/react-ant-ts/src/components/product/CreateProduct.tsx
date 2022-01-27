@@ -29,7 +29,7 @@ function CreateProduct() {
 
   const [product, setProduct] = useState<Product>(initialProductState);
   const [created, setCreated] = useState<boolean>(false);
-  const [visible, setVisible] = useState<boolean>(true);
+  // const [visible, setVisible] = useState<boolean>(true);
   const [form] = Form.useForm();
 
   useEffect(() => {
@@ -37,7 +37,7 @@ function CreateProduct() {
   });
 
   function success() {
-    message.success('Product created!');
+    message.success('Product created!', 3);
     setCreated(false);
   }
 
@@ -71,10 +71,10 @@ function CreateProduct() {
     setProduct(initialProductState);
   }
 
-  function handleClose() {
+  /* function handleClose() {
     setVisible(false);
     setCreated(false);
-  }
+  } */
 
   return (
     <>

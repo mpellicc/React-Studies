@@ -1,64 +1,75 @@
-import { Divider, Typography, Button, Col, Image, Spin, Row } from "antd";
-import { useEffect, useState } from "react";
+import {
+  Divider,
+  Typography,
+  Button,
+  Col,
+  Space,
+  Image,
+  message,
+  Row,
+} from "antd";
 import { useParams, Link } from "react-router-dom";
-import ProductService from "../../../services/ProductsService";
-import { LeftOutlined } from '@ant-design/icons'
 import { Product } from "../../../types/Product";
+import { LeftOutlined } from "@ant-design/icons";
 
-function ProductDetails() {
+type Props = {
+  prod: Product;
+};
+
+function ProductDetails({ prod }: Props) {
   const { id } = useParams();
   const n_id = parseInt(id!);
-  const [product, setProduct] = useState<Product>({
-    id: null,
-    title: "",
-    price: null,
-    category: "",
-    description: "",
-  });
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    ProductService.get(n_id)
-      .then((res: any) => {
-        setProduct(res.data);
-        setLoading(false);
-      })
-      .catch((e: Error) => console.log(e));
-  }, []);
-
-  if (loading) {
-    return (
+  function addMessage() {
+    message
+      .loading("Adding to cart...", 2.5)
+      .then(() => message.info("Product added to cart."));
+  }
+  return (
     <Row>
-      <Col span={24} style={{ textAlign: 'center', }}>
-      <Spin spinning={loading} size="large" />
+      {/*  <Col span={1}>
+          <Link to="/products">
+            <Button icon={<LeftOutlined />} type="link" block>
+              Back
+            </Button>
+          </Link>
+        </Col> */}
+      <Col span={10} style={{ textAlign: "center" }}>
+        <Image src={prod.image} width="40vh" />
+      </Col>
+      <Col span={14}>
+        <div>
+          <Typography.Title level={1}>{prod.title}</Typography.Title>
+          <Typography.Title level={5} type="secondary">
+            {prod.category}
+          </Typography.Title>
+        </div>
+        <Divider />
+        <Space direction="vertical" size={80}>
+          <div>
+            <Typography.Text>{prod.description}</Typography.Text>
+          </div>
+          <div>
+            <Space size="large">
+              <Button
+                type="primary"
+                size="large"
+                shape="round"
+                danger
+                onClick={addMessage}
+              >
+                Buy Now - {prod.price} €
+              </Button>
+              <Link to={`/products/${n_id}/edit`}>
+                <Button size="large" shape="round" ghost danger>
+                  Edit
+                </Button>
+              </Link>
+            </Space>
+          </div>
+        </Space>
       </Col>
     </Row>
-    );
-  } else {
-    return (
-      <Row>
-        <Col span={1}>
-          <Link to='/products'><Button icon={<LeftOutlined />}>Back</Button></Link>
-        </Col>
-        <Col span={9} style={{ textAlign: "center" }}>
-          <Image src={product.image} width='30%' />
-        </Col>
-        <Col span={14}>
-          <Typography.Title level={1}>{product.title}</Typography.Title>
-          <Typography.Title level={5} type="secondary">
-            {product.category}
-          </Typography.Title>
-          <Divider />
-          <Typography.Text>{product.description}</Typography.Text>
-          <br />
-          <br />
-          <Button type="primary" size="large" shape="round" danger>
-            Buy Now - {product.price} €
-          </Button>
-        </Col>
-      </Row>
-    );
-  }
+  );
 }
 
 export default ProductDetails;
