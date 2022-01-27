@@ -18,20 +18,15 @@ type Props = {
 function ProductDetails({ prod }: Props) {
   const { id } = useParams();
   const n_id = parseInt(id!);
+  
   function addMessage() {
     message
       .loading("Adding to cart...", 2.5)
       .then(() => message.info("Product added to cart."));
   }
+
   return (
     <Row>
-      {/*  <Col span={1}>
-          <Link to="/products">
-            <Button icon={<LeftOutlined />} type="link" block>
-              Back
-            </Button>
-          </Link>
-        </Col> */}
       <Col span={10} style={{ textAlign: "center" }}>
         <Image src={prod.image} width="40vh" />
       </Col>
