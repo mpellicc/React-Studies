@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Product } from "../../../types/Product";
 import ProductDetails from "./ProductDetails";
-import { Row, Col, Spin, Image, Button } from "antd";
+import { Row, Col, Spin } from "antd";
 import EditProduct from "./EditProduct";
 import ProductService from "../../../services/ProductsService";
-
 
 function SingleProduct() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -37,13 +36,9 @@ function SingleProduct() {
       </Row>
     );
   } else if (edit) {
-    return (
-        <EditProduct prod={product}/>
-    );
+    return <EditProduct prod={product} />;
   } else {
-    return (
-        <ProductDetails prod={product}/>
-    );
+    return <ProductDetails prod={product} />;
   }
 }
 

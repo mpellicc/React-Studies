@@ -6,7 +6,6 @@ import SingleProduct from "./components/product/single-product/SingleProduct";
 import ProductLayout from "./components/product/ProductLayout";
 import { Content } from "antd/lib/layout/layout";
 import CreateProduct from "./components/product/CreateProduct";
-import EditProduct from "./components/product/single-product/EditProduct";
 
 const mainRoutes = {
   path: "/",
@@ -22,9 +21,9 @@ const productsRoutes = {
   element: <ProductLayout />,
   children: [
     { path: "", element: <ProductsList /> },
-    { path: ":id", element: <SingleProduct  /> },
+    { path: ":id", element: <SingleProduct /> },
     { path: "create", element: <CreateProduct /> },
-    { path: ":id/:edit", element: <SingleProduct  /> },
+    { path: ":id/:edit", element: <SingleProduct /> },
   ],
 };
 

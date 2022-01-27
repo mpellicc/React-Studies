@@ -10,7 +10,6 @@ import {
 } from "antd";
 import { useParams, Link } from "react-router-dom";
 import { Product } from "../../../types/Product";
-import { LeftOutlined } from "@ant-design/icons";
 
 type Props = {
   prod: Product;

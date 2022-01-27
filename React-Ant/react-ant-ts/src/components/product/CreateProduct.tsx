@@ -3,17 +3,14 @@ import {
   Button,
   Input,
   InputNumber,
-  Upload,
   Space,
-  Alert,
   Row,
   Col,
   Divider,
   message,
 } from "antd";
-import { InboxOutlined } from "@ant-design/icons";
 import { Product } from "../../types/Product";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ProductService from "../../services/ProductsService";
 import Title from "antd/lib/typography/Title";
 
@@ -37,7 +34,7 @@ function CreateProduct() {
   });
 
   function success() {
-    message.success('Product created!', 3);
+    message.success("Product created!", 3);
     setCreated(false);
   }
 

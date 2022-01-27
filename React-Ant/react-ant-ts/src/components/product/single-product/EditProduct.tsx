@@ -10,7 +10,7 @@ import {
   InputNumber,
   message,
 } from "antd";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import ProductService from "../../../services/ProductsService";
 import { Product } from "../../../types/Product";
@@ -26,7 +26,7 @@ function EditProduct({ prod }: Props) {
   const [product, setProduct] = useState<Product>(prod);
   const [form] = Form.useForm();
   form.setFieldsValue(product);
-  
+
   function saveProduct(values: any) {
     const { title, price, category, description } = values;
     let item = {
@@ -48,11 +48,12 @@ function EditProduct({ prod }: Props) {
   }
 
   function success() {
-    message.success('Product saved!', 1.5)
-    .then(() => message.loading('Redirecting to product page...', 2.5));
-    const timer =  setTimeout(() => {
+    message
+      .success("Product saved!", 1.5)
+      .then(() => message.loading("Redirecting to product page...", 2.5));
+    const timer = setTimeout(() => {
       navigate(`/products/${n_id}`);
-    }, 4100)
+    }, 4100);
     return () => clearTimeout(timer);
   }
 
@@ -63,7 +64,13 @@ function EditProduct({ prod }: Props) {
       </Col>
       <Col span={14} style={{ textAlign: "center" }}>
         <Typography.Title>EDIT</Typography.Title>
-        <Form form={form} name="create-product" layout="vertical" requiredMark={false} onFinish={saveProduct}>
+        <Form
+          form={form}
+          name="create-product"
+          layout="vertical"
+          requiredMark={false}
+          onFinish={saveProduct}
+        >
           <Form.Item
             label="Title"
             name="title"

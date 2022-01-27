@@ -1,5 +1,4 @@
-import { Menu } from "antd";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 function MainLayout() {
   return (

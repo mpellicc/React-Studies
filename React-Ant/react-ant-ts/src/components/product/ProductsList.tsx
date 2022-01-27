@@ -17,8 +17,8 @@ function ProductsList() {
         setLoading(false);
       })
       .catch((e: Error) => console.log(e));
-  }, []); 
-  
+  }, []);
+
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {
     const temp: Array<Product> = list.filter((item) =>
       item.title.toLowerCase().startsWith(e.target.value.toLowerCase())
