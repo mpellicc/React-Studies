@@ -8,11 +8,12 @@ import {
   Col,
   Divider,
   message,
+  Typography,
 } from "antd";
 import { Product } from "../../types/Product";
 import { useEffect, useState } from "react";
 import ProductService from "../../services/ProductsService";
-import Title from "antd/lib/typography/Title";
+import DropProductImage from "./single-product/DropProductImage";
 
 function CreateProduct() {
   const initialProductState = {
@@ -39,12 +40,14 @@ function CreateProduct() {
   }
 
   function saveProduct(values: any) {
-    const { title, price, category, description } = values;
+    const { title, price, category, description, dragger } = values;
+
     let item = {
       title: title,
       price: price,
       category: category,
       description: description,
+      image: dragger[0].name,
     };
 
     ProductService.create(item)
@@ -54,7 +57,9 @@ function CreateProduct() {
           price: res.data.price,
           category: res.data.category,
           description: res.data.description,
+          image: res.data.image,
         });
+        console.log(res.data);
         setCreated(true);
         success();
       })
@@ -68,31 +73,13 @@ function CreateProduct() {
     setProduct(initialProductState);
   }
 
-  /* function handleClose() {
-    setVisible(false);
-    setCreated(false);
-  } */
-
   return (
     <>
       <Row>
         <Col style={{ textAlign: "center" }} span={24}>
-          <Title>CREATE</Title>
+          <Typography.Title>CREATE</Typography.Title>
         </Col>
       </Row>
-      {/* <Row>
-        <Col style={{ textAlign: "center" }} span={12} offset={6}>
-          {created && visible ? (
-            <Alert
-              message="Product created!"
-              type="success"
-              showIcon
-              closable
-              afterClose={handleClose}
-            />
-          ) : null}
-        </Col>
-      </Row> */}
       <Divider />
       <Row>
         <Col span={24}>
@@ -146,6 +133,9 @@ function CreateProduct() {
             >
               <InputNumber prefix="€" style={{ width: "100%" }} />
             </Form.Item>
+            <Form.Item label="Image">
+              <DropProductImage />
+            </Form.Item>
             <Form.Item style={{ textAlign: "center" }} wrapperCol={{}}>
               <Space>
                 <Button
@@ -157,7 +147,7 @@ function CreateProduct() {
                 >
                   Submit
                 </Button>
-                <Button onClick={newProduct} size="large" danger shape="round">
+                <Button onClick={newProduct} size="large" ghost danger shape="round">
                   Reset
                 </Button>
               </Space>
