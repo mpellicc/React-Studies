@@ -14,6 +14,7 @@ import React from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import ProductService from "../../../services/ProductsService";
 import { Product } from "../../../types/Product";
+import DropProductImage from "./DropProductImage";
 
 type Props = {
   prod: Product;
@@ -111,6 +112,9 @@ function EditProduct({ prod, setProduct }: Props) {
           >
             <InputNumber prefix="€" style={{ width: "100%" }} />
           </Form.Item>
+          <Form.Item label="Image">
+              <DropProductImage />
+            </Form.Item>
           <Form.Item style={{ textAlign: "center" }} wrapperCol={{}}>
             <Space size={40}>
               <Button
