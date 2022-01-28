@@ -36,7 +36,7 @@ function SingleProduct() {
       </Row>
     );
   } else if (edit) {
-    return <EditProduct prod={product} />;
+    return <EditProduct prod={product} setProduct={setProduct} />;
   } else {
     return <ProductDetails prod={product} />;
   }

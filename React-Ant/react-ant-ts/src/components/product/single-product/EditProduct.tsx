@@ -10,22 +10,22 @@ import {
   InputNumber,
   message,
 } from "antd";
-import { useState } from "react";
+import React from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import ProductService from "../../../services/ProductsService";
 import { Product } from "../../../types/Product";
 
 type Props = {
   prod: Product;
+  setProduct: React.Dispatch<React.SetStateAction<Product>>;
 };
 
-function EditProduct({ prod }: Props) {
+function EditProduct({ prod, setProduct }: Props) {
   const { id } = useParams();
   const n_id = parseInt(id!);
   const navigate = useNavigate();
-  const [product, setProduct] = useState<Product>(prod);
   const [form] = Form.useForm();
-  form.setFieldsValue(product);
+  form.setFieldsValue(prod);
 
   function saveProduct(values: any) {
     const { title, price, category, description } = values;
@@ -34,12 +34,13 @@ function EditProduct({ prod }: Props) {
       price: price,
       category: category,
       description: description,
-      image: product.image,
+      image: prod.image,
     };
 
     ProductService.update(n_id, item)
       .then((res: any) => {
         console.log(res.data);
+        setProduct(res.data);
         success();
       })
       .catch((e: Error) => {
@@ -60,7 +61,7 @@ function EditProduct({ prod }: Props) {
   return (
     <Row>
       <Col span={10} style={{ textAlign: "center" }}>
-        <Image src={product.image} width="40vh" />
+        <Image src={prod.image} width="40vh" />
       </Col>
       <Col span={14} style={{ textAlign: "center" }}>
         <Typography.Title>EDIT</Typography.Title>
