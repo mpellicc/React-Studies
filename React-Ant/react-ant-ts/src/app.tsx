@@ -1,6 +1,6 @@
 import Layout from "antd/lib/layout/layout";
 import Navbar from "./components/Navbar/Navbar";
-import Routing from "./routes";
+import Routing from "./pages/routes";
 
 function App() {
   return (
