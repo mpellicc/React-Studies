@@ -1,11 +1,11 @@
 import { Navigate, useRoutes } from "react-router-dom";
-import MainLayout from "./components/main/MainLayout";
-import Home from "./components/main/Home";
-import ProductsList from "./components/product/ProductsList";
-import SingleProduct from "./components/product/single-product/SingleProduct";
-import ProductLayout from "./components/product/ProductLayout";
+import MainLayout from "./components/Main/MainLayout";
+import Home from "./features/Home/Home";
+import ProductsList from "./features/Product/components/ProductsList";
+import SingleProduct from "./features/Product/SingleProduct/components/SingleProduct";
+import ProductLayout from "./features/Product/components/ProductLayout";
 import { Content } from "antd/lib/layout/layout";
-import CreateProduct from "./components/product/CreateProduct";
+import CreateProduct from "./features/Product/components/CreateProduct";
 
 const mainRoutes = {
   path: "/",

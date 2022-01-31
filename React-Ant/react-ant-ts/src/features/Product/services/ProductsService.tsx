@@ -1,4 +1,4 @@
-import http from "../http-common";
+import http from "../../../services/http-common";
 import { Product } from "../types/Product";
 
 function getAll() {

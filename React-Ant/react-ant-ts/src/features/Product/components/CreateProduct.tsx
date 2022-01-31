@@ -10,9 +10,9 @@ import {
   message,
   Typography,
 } from "antd";
-import { Product } from "../../types/Product";
+import { Product } from "./types/Product";
 import { useEffect, useState } from "react";
-import ProductService from "../../services/ProductsService";
+import ProductService from "./services/ProductsService";
 import DropProductImage from "./single-product/DropProductImage";
 
 function CreateProduct() {

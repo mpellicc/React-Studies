@@ -9,7 +9,7 @@ import {
   Row,
 } from "antd";
 import { useParams, Link } from "react-router-dom";
-import { Product } from "../../../types/Product";
+import { Product } from "../../types/Product";
 
 type Props = {
   prod: Product;

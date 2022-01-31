@@ -12,9 +12,9 @@ import {
 } from "antd";
 import React from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import ProductService from "../../../services/ProductsService";
-import { Product } from "../../../types/Product";
-import DropProductImage from "./DropProductImage";
+import ProductService from "../../services/ProductsService";
+import { Product } from "../../types/Product";
+import DropProductImage from "../DropImage/components/DropProductImage";
 
 type Props = {
   prod: Product;

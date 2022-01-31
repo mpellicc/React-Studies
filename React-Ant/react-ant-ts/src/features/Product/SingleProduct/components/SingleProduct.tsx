@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Product } from "../../../types/Product";
+import { Product } from "../../types/Product";
 import ProductDetails from "./ProductDetails";
 import { Row, Col, Spin } from "antd";
 import EditProduct from "./EditProduct";
-import ProductService from "../../../services/ProductsService";
+import ProductService from "../../services/ProductsService";
 
 function SingleProduct() {
   const [loading, setLoading] = useState<boolean>(true);

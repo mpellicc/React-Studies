@@ -1,8 +1,8 @@
 import { Input, List, Spin } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import ProductService from "../../services/ProductsService";
-import { Product } from "../../types/Product";
+import ProductService from "../services/ProductsService";
+import { Product } from "../types/Product";
 
 function ProductsList() {
   const [list, setList] = useState<Array<Product>>([]);
