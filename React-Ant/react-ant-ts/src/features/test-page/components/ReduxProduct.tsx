@@ -7,7 +7,6 @@ import { ReduxProduct } from "features/product/productsSlice";
 function ReduxSingleProduct() {
     const { id } = useParams();
     const n_id = Number(id!);
-    console.log(n_id);
     const prod = useSelector((state: any) => state.products.find((item: any) => item.id === n_id));
 
   return (

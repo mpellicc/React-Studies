@@ -1,4 +1,4 @@
-import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type ReduxProduct = {
   id?: number | null;
@@ -89,7 +89,16 @@ export const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-     
+    incrementByAmount: (state, action: PayloadAction<any>) => {
+      const { id, incrementAmount } = action.payload;
+      const prod = state.find((item) => item.id === id) || { quantity: undefined };
+      prod.quantity += incrementAmount;
+    },
+    decrementByAmount: (state, action: PayloadAction<any>) => {
+      const { id, incrementAmount } = action.payload;
+      const prod = state.find((item) => item.id === id) || { quantity: 100 };
+      prod.quantity -= incrementAmount;
+    },
   },
 });
 
@@ -106,5 +115,6 @@ export const selectProducts = (state: RootState) => state.products;
   (products, id) => products.filter((item: any) => item.id === id) 
 ); */
 
+export const { incrementByAmount, decrementByAmount } = productsSlice.actions;
 
 export default productsSlice.reducer;

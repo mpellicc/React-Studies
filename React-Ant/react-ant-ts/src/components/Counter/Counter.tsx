@@ -1,6 +1,8 @@
 import { Button, InputNumber, Space } from "antd";
+import { incrementByAmount, decrementByAmount, } from "features/product/productsSlice";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
 
 
 type Props = {
@@ -33,12 +35,12 @@ function Counter({ id }: Props) {
           />
           <div>
             <Button
-              
+              onClick={() => dispatch(incrementByAmount({id, incrementAmount}))}
             >
               Increase
             </Button>
             <Button
-              
+              onClick={() => dispatch(decrementByAmount({id, incrementAmount}))}
             >
               Decrease
             </Button>
