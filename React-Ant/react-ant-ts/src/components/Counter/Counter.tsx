@@ -1,16 +1,14 @@
 import { Button, InputNumber, Space } from "antd";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  decrement,
-  increment,
-  incrementByAmount,
-  decrementByAmount,
-  selectCount,
-} from "./counterSlice";
 
-function Counter() {
-  const count = useSelector(selectCount);
+
+type Props = {
+  id: number;
+}
+
+function Counter({ id }: Props) {
+  const quantity = useSelector((state: any) => state.products.find((item: any) => item.id === id).quantity);
   const dispatch = useDispatch();
   const [incrementAmount, setIncrementAmount] = useState(2);
 
@@ -19,10 +17,10 @@ function Counter() {
       <div>
         <Space>
           Amount:
-          <InputNumber readOnly value={count} />
+          <InputNumber readOnly value={quantity} />
           <div>
-            <Button onClick={() => dispatch(increment())}>+</Button>
-            <Button onClick={() => dispatch(decrement())}>-</Button>
+            <Button >+</Button>
+            <Button >-</Button>
           </div>
         </Space>
       </div>
@@ -35,16 +33,12 @@ function Counter() {
           />
           <div>
             <Button
-              onClick={() =>
-                dispatch(incrementByAmount(incrementAmount || 0))
-              }
+              
             >
               Increase
             </Button>
             <Button
-              onClick={() =>
-                dispatch(decrementByAmount(incrementAmount || 0))
-              }
+              
             >
               Decrease
             </Button>

@@ -1,5 +1,4 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { DefaultRootState } from "react-redux";
 
 export type ReduxProduct = {
   id?: number | null;
@@ -89,23 +88,23 @@ const initialState: ReduxProduct[] = [
 export const productsSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+     
+  },
 });
 
 interface RootState {
   products: ReduxProduct[];
-
 }
+
 export const selectProducts = (state: RootState) => state.products;
-export const selectProductId = (state: RootState, id: number) => id;
-export const selectSingleProduct = createSelector(
+/* export const selectProductId = createSelector(
   [
-    selectProducts,
-    selectProductId
+    (state: any) => state.products,
+    (state, id) => id
   ],
-  (products, id) => products[id]
-);
-export const selectProductQuantity = createSelector([selectSingleProduct], (item: ReduxProduct) => item.quantity);
+  (products, id) => products.filter((item: any) => item.id === id) 
+); */
 
 
 export default productsSlice.reducer;
