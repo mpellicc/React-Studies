@@ -2,12 +2,15 @@ import { Row, Col, Typography } from "antd";
 import Counter from "components/Counter/Counter";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { ReduxProduct } from "features/product/productsSlice";
+import { ReduxProduct, selectProductId, selectSingleProduct } from "features/product/productsSlice";
 
 function ReduxSingleProduct() {
     const { id } = useParams();
-    const products: ReduxProduct[] = useSelector((state: any) => state.products);
-    const prod = products.find((item) => item.id === Number(id));
+    const testId = useSelector(selectProductId);
+    console.log(testId);
+    const prod = {
+      title: "test"
+    };
 
   return (
     <Row>
@@ -21,4 +24,4 @@ function ReduxSingleProduct() {
   );
 }
 
-export default ReduxSingleProduct;
+export default ReduxSingleProduct;  

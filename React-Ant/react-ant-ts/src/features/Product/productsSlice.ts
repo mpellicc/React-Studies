@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { DefaultRootState } from "react-redux";
 
 export type ReduxProduct = {
@@ -91,5 +91,21 @@ export const productsSlice = createSlice({
   initialState,
   reducers: {},
 });
+
+interface RootState {
+  products: ReduxProduct[];
+
+}
+export const selectProducts = (state: RootState) => state.products;
+export const selectProductId = (state: RootState, id: number) => id;
+export const selectSingleProduct = createSelector(
+  [
+    selectProducts,
+    selectProductId
+  ],
+  (products, id) => products[id]
+);
+export const selectProductQuantity = createSelector([selectSingleProduct], (item: ReduxProduct) => item.quantity);
+
 
 export default productsSlice.reducer;
