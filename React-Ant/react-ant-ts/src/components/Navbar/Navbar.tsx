@@ -28,6 +28,9 @@ function Navbar() {
         <Menu.Item key="/products">
           <Link to="/products">View List</Link>
         </Menu.Item>
+        <Menu.Item key="/redux">
+          <Link to="/redux">Redux Test Page</Link>
+        </Menu.Item>
       </Menu>
     </Header>
   );

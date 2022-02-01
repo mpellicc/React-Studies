@@ -14,7 +14,7 @@ import React from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import ProductService from "../../services/ProductsService";
 import { Product } from "../../types/Product";
-import DropProductImage from "../DropImage/components/DropProductImage";
+import DropProductImage from "./DropImage/DropProductImage";
 
 type Props = {
   prod: Product;

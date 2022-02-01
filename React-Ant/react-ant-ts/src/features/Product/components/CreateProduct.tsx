@@ -10,10 +10,10 @@ import {
   message,
   Typography,
 } from "antd";
-import { Product } from "./types/Product";
+import { Product } from "../types/Product";
 import { useEffect, useState } from "react";
-import ProductService from "./services/ProductsService";
-import DropProductImage from "./single-product/DropProductImage";
+import ProductService from "../services/ProductsService";
+import DropProductImage from "../single-product/components/DropImage/DropProductImage";
 
 function CreateProduct() {
   const initialProductState = {

@@ -1,11 +1,12 @@
 import { Navigate, useRoutes } from "react-router-dom";
 import MainLayout from "../components/Main/MainLayout";
 import Home from "./home/Home";
-import ProductsList from "../features/Product/views/ProductsList";
-import SingleProduct from "../features/Product/single-product/views/SingleProduct";
+import ProductsList from "../features/product/views/ProductsList";
+import SingleProduct from "../features/product/single-product/views/SingleProduct";
 import ProductLayout from "./product/ProductLayout";
 import { Content } from "antd/lib/layout/layout";
-import CreateProduct from "../features/Product/components/CreateProduct";
+import CreateProduct from "../features/product/components/CreateProduct";
+import TestPage from "./test-page/TestPage";
 
 const mainRoutes = {
   path: "/",
@@ -13,6 +14,7 @@ const mainRoutes = {
   children: [
     { path: "/", element: <Home /> },
     { path: "products", element: <Navigate to="/products" /> },
+    { path: "redux", element: <TestPage /> },
   ],
 };
 
