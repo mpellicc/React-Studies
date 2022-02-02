@@ -121,6 +121,7 @@ export const selectProducts = (state: RootState) => state.products;
   ],
   (products, id) => products.filter((item: any) => item.id === id) 
 ); */
+export const selectProdById = (state: RootState, id: number) => state.products.find(prod => prod.id === id);
 
 export const { incrementByAmount, decrementByAmount, incrementQuantity, decrementQuantity } = productsSlice.actions;
 
