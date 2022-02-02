@@ -36,8 +36,8 @@ function ReduxSingleProduct() {
             </Typography.Title>
             <Divider />
             <div>
-              <p>{prod!.description}</p>
-              <p>{prod!.price} $</p>
+              <p>{prod.description}</p>
+              <p>{prod.price} $</p>
             </div>
           </Card>
         </Col>
