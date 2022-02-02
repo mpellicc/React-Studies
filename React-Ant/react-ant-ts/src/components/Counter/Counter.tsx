@@ -10,7 +10,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 type Props = {
-  id: number;
+  id?: number | null;
 };
 
 function Counter({ id }: Props) {
