@@ -1,10 +1,11 @@
 import { Button, Row, Col } from "antd";
+import { Content } from "antd/lib/layout/layout";
 import Title from "antd/lib/typography/Title";
 import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <>
+    <Content>
       <Row>
         <Col
           style={{
@@ -49,7 +50,7 @@ function Home() {
           </div>
         </Col>
       </Row>
-    </>
+    </Content>
   );
 }
 

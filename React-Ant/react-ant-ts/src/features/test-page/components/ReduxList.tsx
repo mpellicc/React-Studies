@@ -1,4 +1,4 @@
-import { InputNumber, List } from "antd";
+import { Card, InputNumber, List } from "antd";
 import { ReduxProduct } from "features/product/productsSlice";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -7,6 +7,7 @@ function ReduxList() {
   const products: ReduxProduct[] = useSelector((state: any) => state.products);
 
   return (
+    <Card bordered={false} title="Products List" style={{margin: '50px 0'}} >
     <List
       dataSource={products}
       renderItem={(item) => (
@@ -17,7 +18,8 @@ function ReduxList() {
           </div>
         </List.Item>
       )}
-    ></List>
+    />
+    </Card>
   );
 }
 
