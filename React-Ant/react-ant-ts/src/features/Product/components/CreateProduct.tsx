@@ -9,6 +9,7 @@ import {
   Divider,
   message,
   Typography,
+  Card,
 } from "antd";
 import { Product } from "../types/Product";
 import { useEffect, useState } from "react";
@@ -41,13 +42,13 @@ function CreateProduct() {
 
   function saveProduct(values: any) {
     const { title, price, category, description, dragger } = values;
-
+    console.log(values);
     let item = {
       title: title,
       price: price,
       category: category,
       description: description,
-      image: dragger[0].name,
+      image: dragger ? dragger[0].name : undefined,
     };
 
     ProductService.create(item)
@@ -74,13 +75,13 @@ function CreateProduct() {
   }
 
   return (
-    <>
-      <Row>
+    <Card bordered={false} title="Create Product" style={{ margin: "50px 0" }}>
+      {/* <Row>
         <Col style={{ textAlign: "center" }} span={24}>
           <Typography.Title>CREATE</Typography.Title>
         </Col>
       </Row>
-      <Divider />
+      <Divider /> */}
       <Row>
         <Col span={24}>
           <Form
@@ -147,7 +148,13 @@ function CreateProduct() {
                 >
                   Submit
                 </Button>
-                <Button onClick={newProduct} size="large" ghost danger shape="round">
+                <Button
+                  onClick={newProduct}
+                  size="large"
+                  ghost
+                  danger
+                  shape="round"
+                >
                   Reset
                 </Button>
               </Space>
@@ -155,7 +162,7 @@ function CreateProduct() {
           </Form>
         </Col>
       </Row>
-    </>
+    </Card>
   );
 }
 
