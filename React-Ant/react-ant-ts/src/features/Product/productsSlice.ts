@@ -1,4 +1,5 @@
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "store";
 
 export type ReduxProduct = {
   id?: number | null;
@@ -91,20 +92,26 @@ export const productsSlice = createSlice({
   reducers: {
     incrementByAmount: (state, action: PayloadAction<any>) => {
       const { id, incrementAmount } = action.payload;
-      const prod = state.find((item) => item.id === id) || { quantity: undefined };
-      prod.quantity += incrementAmount;
+      const prod = state.find((item) => item.id === id);
+      prod!.quantity += incrementAmount;
     },
     decrementByAmount: (state, action: PayloadAction<any>) => {
       const { id, incrementAmount } = action.payload;
-      const prod = state.find((item) => item.id === id) || { quantity: 100 };
-      prod.quantity -= incrementAmount;
+      const prod = state.find((item) => item.id === id);
+      prod!.quantity -= incrementAmount;
+    },
+    incrementQuantity: (state, action: PayloadAction<any>) => {
+      const { id } = action.payload;
+      const prod = state.find((item) => item.id === id);
+      prod!.quantity += 1;
+    },
+    decrementQuantity: (state, action: PayloadAction<any>) => {
+      const { id } = action.payload;
+      const prod = state.find((item) => item.id === id);
+      prod!.quantity -= 1;
     },
   },
 });
-
-interface RootState {
-  products: ReduxProduct[];
-}
 
 export const selectProducts = (state: RootState) => state.products;
 /* export const selectProductId = createSelector(
@@ -115,6 +122,6 @@ export const selectProducts = (state: RootState) => state.products;
   (products, id) => products.filter((item: any) => item.id === id) 
 ); */
 
-export const { incrementByAmount, decrementByAmount } = productsSlice.actions;
+export const { incrementByAmount, decrementByAmount, incrementQuantity, decrementQuantity } = productsSlice.actions;
 
 export default productsSlice.reducer;
