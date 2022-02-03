@@ -26,7 +26,7 @@ function Counter({ id }: Props) {
     <Space size="large" direction="vertical">
       <div>
         <Space>
-          {t('amount')}:
+          {`${t("amount")}:`}
           <InputNumber readOnly value={quantity} />
           <ButtonGroup>
             <Button onClick={() => dispatch(incrementQuantity({ id }))}>
@@ -40,7 +40,7 @@ function Counter({ id }: Props) {
       </div>
       <div>
         <Space>
-          {t('choose increment')}:
+          {`${t("choose increment")}:`}
           <InputNumber
             value={incrementAmount}
             onChange={(n) => setIncrementAmount(n)}
@@ -51,14 +51,14 @@ function Counter({ id }: Props) {
                 dispatch(incrementByAmount({ id, incrementAmount }))
               }
             >
-              {t('increase')}
+              {t("increase")}
             </Button>
             <Button
               onClick={() =>
                 dispatch(decrementByAmount({ id, incrementAmount }))
               }
             >
-              {t('decrease')}
+              {t("decrease")}
             </Button>
           </ButtonGroup>
         </Space>

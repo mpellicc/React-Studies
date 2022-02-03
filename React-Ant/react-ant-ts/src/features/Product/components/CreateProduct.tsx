@@ -43,7 +43,7 @@ function CreateProduct() {
   function saveProduct(values: any) {
     const { title, price, category, description, dragger } = values;
     console.log(values);
-    
+
     let item = {
       title: title,
       price: price,
@@ -68,7 +68,7 @@ function CreateProduct() {
       .catch((e: Error) => {
         console.log(e);
       });
-    
+
     newProduct();
   }
 
@@ -78,7 +78,7 @@ function CreateProduct() {
   }
 
   function onPricePaste(e: React.ClipboardEvent) {
-    const paste = e.clipboardData.getData('text/plain');
+    const paste = e.clipboardData.getData("text/plain");
     if (paste.match(/(\d\.\d*)/)) {
       e.preventDefault();
       return false;
@@ -136,7 +136,7 @@ function CreateProduct() {
             >
               <Input />
             </Form.Item>
-            <Form.Item label="Description" name="description">
+            <Form.Item label={t('description')} name="description">
               <Input.TextArea />
             </Form.Item>
             <Form.Item
