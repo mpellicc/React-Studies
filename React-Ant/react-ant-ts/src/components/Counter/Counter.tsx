@@ -7,6 +7,7 @@ import {
   decrementQuantity,
 } from "features/product/productsSlice";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 
 type Props = {
@@ -14,6 +15,7 @@ type Props = {
 };
 
 function Counter({ id }: Props) {
+  const { t, i18n } = useTranslation();
   const quantity = useSelector(
     (state: any) => state.products.find((item: any) => item.id === id).quantity
   );
@@ -24,7 +26,7 @@ function Counter({ id }: Props) {
     <Space size="large" direction="vertical">
       <div>
         <Space>
-          Amount:
+          {t('amount')}:
           <InputNumber readOnly value={quantity} />
           <ButtonGroup>
             <Button onClick={() => dispatch(incrementQuantity({ id }))}>
@@ -38,7 +40,7 @@ function Counter({ id }: Props) {
       </div>
       <div>
         <Space>
-          Choose increment amount:
+          {t('choose increment')}:
           <InputNumber
             value={incrementAmount}
             onChange={(n) => setIncrementAmount(n)}
@@ -49,14 +51,14 @@ function Counter({ id }: Props) {
                 dispatch(incrementByAmount({ id, incrementAmount }))
               }
             >
-              Increase
+              {t('increase')}
             </Button>
             <Button
               onClick={() =>
                 dispatch(decrementByAmount({ id, incrementAmount }))
               }
             >
-              Decrease
+              {t('decrease')}
             </Button>
           </ButtonGroup>
         </Space>

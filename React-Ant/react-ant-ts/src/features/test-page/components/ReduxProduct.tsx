@@ -1,12 +1,14 @@
 import { Row, Col, Typography, Card, Divider, Empty } from "antd";
 import Counter from "components/Counter/Counter";
 import { selectProdById } from "features/product/productsSlice";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { RootState } from "store";
 const { Text } = Typography;
 
 function ReduxSingleProduct() {
+  const { t, i18n } = useTranslation();
   const { id } = useParams();
   const n_id = Number(id!);
   /* const prod = useSelector((state: any) =>
@@ -20,7 +22,7 @@ function ReduxSingleProduct() {
         <Empty
           description={
             <p>
-              <Text type="danger">Error</Text> - Product Not Found
+              <Text type="danger">{t('error')}</Text> - {t('product not found')}
             </p>
           }
         />
@@ -44,7 +46,7 @@ function ReduxSingleProduct() {
           </Card>
         </Col>
         <Col span={8}>
-          <Card bordered={true} type="inner" title="Manage Quantity">
+          <Card bordered={true} type="inner" title={t('manage quantity')}>
             <Counter id={prod!.id} />
           </Card>
         </Col>

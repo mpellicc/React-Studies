@@ -6,15 +6,15 @@ import {
   Space,
   Row,
   Col,
-  Divider,
   message,
-  Typography,
   Card,
 } from "antd";
+import NumberFormat from "react-number-format";
 import { Product } from "../types/Product";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProductService from "../services/ProductsService";
-import DropProductImage from "../single-product/components/DropImage/DropProductImage";
+import DropProductImage from "./DropImage/DropProductImage";
+import { useTranslation } from "react-i18next";
 
 function CreateProduct() {
   const initialProductState = {
@@ -25,7 +25,7 @@ function CreateProduct() {
     description: "",
     image: "",
   };
-
+  const { t, i18n } = useTranslation();
   const [product, setProduct] = useState<Product>(initialProductState);
   const [created, setCreated] = useState<boolean>(false);
   // const [visible, setVisible] = useState<boolean>(true);
@@ -43,6 +43,7 @@ function CreateProduct() {
   function saveProduct(values: any) {
     const { title, price, category, description, dragger } = values;
     console.log(values);
+    
     let item = {
       title: title,
       price: price,
@@ -67,6 +68,8 @@ function CreateProduct() {
       .catch((e: Error) => {
         console.log(e);
       });
+    
+    newProduct();
   }
 
   function newProduct() {
@@ -74,8 +77,22 @@ function CreateProduct() {
     setProduct(initialProductState);
   }
 
+  function onPricePaste(e: React.ClipboardEvent) {
+    const paste = e.clipboardData.getData('text/plain');
+    if (paste.match(/(\d\.\d*)/)) {
+      e.preventDefault();
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   return (
-    <Card bordered={false} title="Create Product" style={{ margin: "50px 0" }}>
+    <Card
+      bordered={false}
+      title={t("create product")}
+      style={{ margin: "50px 0" }}
+    >
       {/* <Row>
         <Col style={{ textAlign: "center" }} span={24}>
           <Typography.Title>CREATE</Typography.Title>
@@ -96,7 +113,7 @@ function CreateProduct() {
             onFinish={(values) => saveProduct(values)}
           >
             <Form.Item
-              label="Title"
+              label={t("title")}
               name="title"
               rules={[
                 {
@@ -108,7 +125,7 @@ function CreateProduct() {
               <Input />
             </Form.Item>
             <Form.Item
-              label="Category"
+              label={t("category")}
               name="category"
               rules={[
                 {
@@ -123,7 +140,7 @@ function CreateProduct() {
               <Input.TextArea />
             </Form.Item>
             <Form.Item
-              label="Price"
+              label={t("price")}
               name="price"
               rules={[
                 {
@@ -132,9 +149,18 @@ function CreateProduct() {
                 },
               ]}
             >
-              <InputNumber prefix="€" style={{ width: "100%" }} />
+              <NumberFormat
+                thousandSeparator="."
+                decimalSeparator=","
+                decimalScale={2}
+                allowNegative={false}
+                prefix="€"
+                className="ant-input"
+                onPaste={(e: React.ClipboardEvent) => onPricePaste(e)}
+              />
+              {/* <InputNumber prefix="€" style={{ width: "100%" }} formatter={value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')} decimalSeparator=","  />  */}
             </Form.Item>
-            <Form.Item label="Image">
+            <Form.Item label={t("image")}>
               <DropProductImage />
             </Form.Item>
             <Form.Item style={{ textAlign: "center" }} wrapperCol={{}}>
@@ -146,7 +172,7 @@ function CreateProduct() {
                   danger
                   shape="round"
                 >
-                  Submit
+                  {t("submit")}
                 </Button>
                 <Button
                   onClick={newProduct}
@@ -155,7 +181,7 @@ function CreateProduct() {
                   danger
                   shape="round"
                 >
-                  Reset
+                  {t("reset")}
                 </Button>
               </Space>
             </Form.Item>
