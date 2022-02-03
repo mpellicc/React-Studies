@@ -153,6 +153,7 @@ function CreateProduct() {
                 thousandSeparator="."
                 decimalSeparator=","
                 decimalScale={2}
+                fixedDecimalScale={true}
                 allowNegative={false}
                 prefix="€"
                 className="ant-input"
