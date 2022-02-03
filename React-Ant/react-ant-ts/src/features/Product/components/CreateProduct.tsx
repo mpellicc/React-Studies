@@ -158,7 +158,13 @@ function CreateProduct() {
                 className="ant-input"
                 onPaste={(e: React.ClipboardEvent) => onPricePaste(e)}
               />
-              {/* <InputNumber prefix="€" style={{ width: "100%" }} formatter={value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')} decimalSeparator=","  />  */}
+              {/* <InputNumber 
+                prefix="€" 
+                style={{ width: "100%" }} 
+                decimalSeparator={","}
+                formatter={value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))(?:,\d{1,3})?/g, '.')}   // |(?=(,\d{0,2}))
+                parser={value => `${value}`.replace(/(\.*)|/g, '')}   // |(,?)
+              />  */}
             </Form.Item>
             <Form.Item label={t("image")}>
               <DropProductImage />
