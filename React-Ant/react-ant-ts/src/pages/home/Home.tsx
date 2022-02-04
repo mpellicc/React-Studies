@@ -1,10 +1,13 @@
 import { Button, Row, Col } from "antd";
+import { Content } from "antd/lib/layout/layout";
 import Title from "antd/lib/typography/Title";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 function Home() {
+  const {t, i18n} = useTranslation();
   return (
-    <>
+    <Content>
       <Row>
         <Col
           style={{
@@ -30,7 +33,7 @@ function Home() {
           >
             <Link to="/products/create">
               <Button type="primary" size="large" shape="round">
-                CREATE
+                {t('create').toUpperCase()}
               </Button>
             </Link>
           </div>
@@ -43,13 +46,13 @@ function Home() {
           >
             <Link to="/products">
               <Button size="large" shape="round">
-                VIEW
+              {t('view').toUpperCase()}
               </Button>
             </Link>
           </div>
         </Col>
       </Row>
-    </>
+    </Content>
   );
 }
 

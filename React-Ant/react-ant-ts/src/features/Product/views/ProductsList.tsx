@@ -1,4 +1,4 @@
-import { Input, List, Spin } from "antd";
+import { Card, Input, List, Spin } from "antd";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ProductService from "../services/ProductsService";
@@ -27,18 +27,21 @@ function ProductsList() {
   }
 
   return (
-    <div>
+    <Card
+      bordered={false}
+      title="Products List"
+      style={{ margin: "50px 0" }}
+      extra={
+        <Input
+          type="text"
+          placeholder="Search product"
+          allowClear
+          onChange={onChange}
+        />
+      }
+    >
       <Spin spinning={loading}>
         <List
-          header={
-            <Input
-              type="text"
-              placeholder="Search product"
-              allowClear
-              onChange={onChange}
-            />
-          }
-          split
           dataSource={filteredList}
           renderItem={(item) => (
             <List.Item key={item.id}>
@@ -47,7 +50,7 @@ function ProductsList() {
           )}
         ></List>
       </Spin>
-    </div>
+    </Card>
   );
 }
 

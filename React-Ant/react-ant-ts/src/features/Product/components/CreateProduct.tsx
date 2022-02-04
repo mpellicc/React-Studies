@@ -6,14 +6,15 @@ import {
   Space,
   Row,
   Col,
-  Divider,
   message,
-  Typography,
+  Card,
 } from "antd";
-import { Product } from "./types/Product";
-import { useEffect, useState } from "react";
-import ProductService from "./services/ProductsService";
-import DropProductImage from "./single-product/DropProductImage";
+import NumberFormat from "react-number-format";
+import { Product } from "../types/Product";
+import React, { useEffect, useState } from "react";
+import ProductService from "../services/ProductsService";
+import DropProductImage from "./DropImage/DropProductImage";
+import { useTranslation } from "react-i18next";
 
 function CreateProduct() {
   const initialProductState = {
@@ -24,7 +25,7 @@ function CreateProduct() {
     description: "",
     image: "",
   };
-
+  const { t, i18n } = useTranslation();
   const [product, setProduct] = useState<Product>(initialProductState);
   const [created, setCreated] = useState<boolean>(false);
   // const [visible, setVisible] = useState<boolean>(true);
@@ -41,13 +42,14 @@ function CreateProduct() {
 
   function saveProduct(values: any) {
     const { title, price, category, description, dragger } = values;
+    console.log(values);
 
     let item = {
       title: title,
       price: price,
       category: category,
       description: description,
-      image: dragger[0].name,
+      image: dragger ? dragger[0].name : undefined,
     };
 
     ProductService.create(item)
@@ -66,6 +68,8 @@ function CreateProduct() {
       .catch((e: Error) => {
         console.log(e);
       });
+
+    newProduct();
   }
 
   function newProduct() {
@@ -73,14 +77,28 @@ function CreateProduct() {
     setProduct(initialProductState);
   }
 
+  function onPricePaste(e: React.ClipboardEvent) {
+    const paste = e.clipboardData.getData("text/plain");
+    if (paste.match(/(\d\.\d*)/)) {
+      e.preventDefault();
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   return (
-    <>
-      <Row>
+    <Card
+      bordered={false}
+      title={t("create product")}
+      style={{ margin: "50px 0" }}
+    >
+      {/* <Row>
         <Col style={{ textAlign: "center" }} span={24}>
           <Typography.Title>CREATE</Typography.Title>
         </Col>
       </Row>
-      <Divider />
+      <Divider /> */}
       <Row>
         <Col span={24}>
           <Form
@@ -95,7 +113,7 @@ function CreateProduct() {
             onFinish={(values) => saveProduct(values)}
           >
             <Form.Item
-              label="Title"
+              label={t("title")}
               name="title"
               rules={[
                 {
@@ -107,7 +125,7 @@ function CreateProduct() {
               <Input />
             </Form.Item>
             <Form.Item
-              label="Category"
+              label={t("category")}
               name="category"
               rules={[
                 {
@@ -118,11 +136,11 @@ function CreateProduct() {
             >
               <Input />
             </Form.Item>
-            <Form.Item label="Description" name="description">
+            <Form.Item label={t('description')} name="description">
               <Input.TextArea />
             </Form.Item>
             <Form.Item
-              label="Price"
+              label={t("price")}
               name="price"
               rules={[
                 {
@@ -131,9 +149,25 @@ function CreateProduct() {
                 },
               ]}
             >
-              <InputNumber prefix="€" style={{ width: "100%" }} />
+              <NumberFormat
+                thousandSeparator="."
+                decimalSeparator=","
+                decimalScale={2}
+                fixedDecimalScale={true}
+                allowNegative={false}
+                prefix="€"
+                className="ant-input"
+                onPaste={(e: React.ClipboardEvent) => onPricePaste(e)}
+              />
+              {/* <InputNumber 
+                prefix="€" 
+                style={{ width: "100%" }} 
+                decimalSeparator={","}
+                formatter={value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))(?:,\d{1,3})?/g, '.')}   // |(?=(,\d{0,2}))
+                parser={value => `${value}`.replace(/(\.*)|/g, '')}   // |(,?)
+              />  */}
             </Form.Item>
-            <Form.Item label="Image">
+            <Form.Item label={t("image")}>
               <DropProductImage />
             </Form.Item>
             <Form.Item style={{ textAlign: "center" }} wrapperCol={{}}>
@@ -145,17 +179,23 @@ function CreateProduct() {
                   danger
                   shape="round"
                 >
-                  Submit
+                  {t("submit")}
                 </Button>
-                <Button onClick={newProduct} size="large" ghost danger shape="round">
-                  Reset
+                <Button
+                  onClick={newProduct}
+                  size="large"
+                  ghost
+                  danger
+                  shape="round"
+                >
+                  {t("reset")}
                 </Button>
               </Space>
             </Form.Item>
           </Form>
         </Col>
       </Row>
-    </>
+    </Card>
   );
 }
 

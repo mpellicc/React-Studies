@@ -1,8 +1,9 @@
 import { Form, Upload } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
-import { RcFile } from "antd/lib/upload";
+import { useTranslation } from "react-i18next";
 
 function DropProductImage() {
+  const {t, i18n} = useTranslation();
     function normFile(e: any) {
         if (Array.isArray(e)) {
           return e;
@@ -16,7 +17,7 @@ function DropProductImage() {
             <p className="ant-upload-drag-icon">
               <InboxOutlined />
             </p>
-            <p className="ant-upload-text">Click or drag file to this area to upload</p>
+            <p className="ant-upload-text">{t('dragger tip')}</p>
           </Upload.Dragger>
         </Form.Item>
     );
