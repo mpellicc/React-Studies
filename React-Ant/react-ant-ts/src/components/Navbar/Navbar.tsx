@@ -1,7 +1,7 @@
 import { Button, Menu } from "antd";
 import ButtonGroup from "antd/lib/button/button-group";
 import { Header } from "antd/lib/layout/layout";
-import Text from "antd/lib/typography/Text";
+import { ShoppingCartOutlined } from "@ant-design/icons"
 import { useTranslation } from "react-i18next";
 import { useLocation, Link } from "react-router-dom";
 
@@ -49,8 +49,10 @@ function Navbar() {
         ))}
         </ButtonGroup>
         </Menu.Item>
+        <Menu.Item key="/cart" style={{ textAlign: 'center', width: '7vw' }}>
+          <ShoppingCartOutlined style={{ fontSize: '18px' }} />
+        </Menu.Item>
       </Menu>
-      
     </Header>
   );
 }
