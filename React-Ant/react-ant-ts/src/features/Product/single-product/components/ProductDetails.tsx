@@ -8,6 +8,8 @@ import {
   message,
   Row,
 } from "antd";
+import { addToCart } from "features/cart/cartSlice";
+import { useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import { Product } from "../../types/Product";
 
@@ -18,7 +20,9 @@ type Props = {
 function ProductDetails({ prod }: Props) {
   const { id } = useParams();
   const n_id = parseInt(id!);
-  
+  const dispatch = useDispatch();
+
+
   function addMessage() {
     message
       .loading("Adding to cart...", 2.5)
@@ -49,7 +53,7 @@ function ProductDetails({ prod }: Props) {
                 size="large"
                 shape="round"
                 danger
-                onClick={addMessage}
+                onClick={() => {dispatch(addToCart(prod)); addMessage()}}
               >
                 Buy Now - {prod.price} €
               </Button>
