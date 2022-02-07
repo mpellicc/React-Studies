@@ -9,6 +9,12 @@ module.exports = {
         new WebpackHtmlPlugin({
             template: './public/index.html'
         }),
+        new ModuleFederationPlugin({
+          name: 'container',
+          remotes: {
+              createProduct: 'createProduct@http://localhost:8081/remoteEntry.js',
+          },
+        }),
     ],
     module: {
         rules: [
