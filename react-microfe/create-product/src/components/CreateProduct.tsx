@@ -40,7 +40,7 @@ import {
       setCreated(false);
     }
   
-    function saveProduct(values: any) {
+    function saveProduct(values : any) {
       const { title, price, category, description, dragger } = values;
       console.log(values);
   

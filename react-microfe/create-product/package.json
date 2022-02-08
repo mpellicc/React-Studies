@@ -26,7 +26,7 @@
     "webpack-dev-server": "^4.7.4"
   },
   "scripts": {
-    "webpack": "webpack serve",
+    "webpack": "webpack serve --mode=development",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

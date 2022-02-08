@@ -23,7 +23,8 @@ const en = {
         "decrease": "Decrease",
         "error": "Error",
         "product not found": "Product not found",
-
+        "cart": "Cart",
+        "gotoCart": "Go to Cart",
     }
 }
 

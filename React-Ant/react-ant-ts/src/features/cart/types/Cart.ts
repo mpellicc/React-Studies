@@ -1,7 +1,7 @@
 import { Product } from "features/product/types/Product";
 
-type CartItem = {
-    prod: Product;
+export type CartItem = {
+    item: Product;
     cartQty: number;
 }
 

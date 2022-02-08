@@ -23,7 +23,8 @@ const it = {
         "decrease": "Diminuisci",
         "error": "Errore",
         "product not found": "Prodotto non trovato",
-
+        "cart": "Carrello",
+        "gotoCart": "Vai al Carrello",
     }
 }
 
