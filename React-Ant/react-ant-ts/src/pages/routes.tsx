@@ -9,6 +9,7 @@ import CreateProduct from "../features/product/components/CreateProduct";
 import TestPage from "./test-page/TestPage";
 import ReduxList from "features/test-page/components/ReduxList";
 import ReduxSingleProduct from "features/test-page/components/ReduxProduct";
+import CartLayout from "./cart/CartLayout";
 
 const mainRoutes = {
   path: "/",
@@ -17,6 +18,7 @@ const mainRoutes = {
     { path: "/", element: <Home /> },
     { path: "products", element: <Navigate to="/products" /> },
     { path: "redux", element: <Navigate to="/redux" /> },
+    { path: "cart", element: <CartLayout /> },
   ],
 };
 

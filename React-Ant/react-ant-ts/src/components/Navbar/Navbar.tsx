@@ -1,11 +1,30 @@
-import { Button, Menu, List, InputNumber, Popover, Divider, Badge, Radio } from "antd";
+import {
+  Button,
+  Menu,
+  List,
+  Typography,
+  Popover,
+  Divider,
+  Badge,
+  Radio,
+  Space,
+  Row,
+  Col,
+} from "antd";
 import ButtonGroup from "antd/lib/button/button-group";
 import { Header } from "antd/lib/layout/layout";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { useLocation, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { decreaseQuantity, getTotal, increaseQuantity, removeFromCart, selectCart, } from "features/cart/cartSlice";
+import {
+  decreaseQuantity,
+  getTotal,
+  increaseQuantity,
+  removeFromCart,
+  selectCart,
+} from "features/cart/cartSlice";
+const { Text } = Typography;
 
 const lngs: any = {
   en: { nativeName: "English" },
@@ -17,7 +36,7 @@ function Navbar() {
   const { t, i18n } = useTranslation();
   const cart = useSelector(selectCart);
   const dispatch = useDispatch();
-  
+
   function cartTotal() {
     dispatch(getTotal());
     return cart.total;
@@ -31,22 +50,59 @@ function Navbar() {
         dataSource={cart.items}
         renderItem={(prod) => (
           <List.Item key={prod.item.id}>
-            {prod.item.title}
-            <div>
-              {t("quantity")}: <Badge count={prod.cartQty} />
-            </div>
-            <ButtonGroup>
-              <Button type="link" size="small" onClick={() => dispatch(increaseQuantity(prod.item.id!))}>+</Button>
-              <Button type="link" size="small" onClick={() => dispatch(decreaseQuantity(prod.item.id!))} disabled={prod.cartQty === 1 ? true : false}>-</Button>
-            </ButtonGroup>
-            <Divider type="vertical" />
-            <Button type="link" size="small" onClick={() => dispatch(removeFromCart(prod.item.id!))}>Remove</Button>
+            <Space direction="vertical">
+              <div>
+                <Text>{prod.item.title}</Text>
+                <br />
+                <Text strong>{prod.item.price} €</Text>
+              </div>
+              <div>
+                <div>
+                  {t("quantity")}: <Badge count={prod.cartQty} />
+                </div>
+                <div>
+                  <ButtonGroup>
+                    <Button
+                      type="link"
+                      size="small"
+                      onClick={() => dispatch(increaseQuantity(prod.item.id!))}
+                    >
+                      +
+                    </Button>
+                    <Button
+                      type="link"
+                      size="small"
+                      onClick={() => dispatch(decreaseQuantity(prod.item.id!))}
+                      disabled={prod.cartQty === 1 ? true : false}
+                    >
+                      -
+                    </Button>
+                  </ButtonGroup>
+                  <Divider type="vertical" />
+                  <Button
+                    type="link"
+                    size="small"
+                    onClick={() => dispatch(removeFromCart(prod.item.id!))}
+                  >
+                    Remove
+                  </Button>
+                </div>
+              </div>
+            </Space>
           </List.Item>
         )}
       />
       <Divider />
-      <p>Tot.: {cartTotalNumber} €</p>
-      <Button type="primary">{t('gotoCart')}</Button>
+      <Row>
+        <Col span={12}>
+          <Text>Tot.:</Text> <Text strong>{cartTotalNumber} €</Text>
+        </Col>
+        <Col span={12} style={{ textAlign: "right" }}>
+          <Link to="/cart">
+            {t("gotoCart")}
+          </Link>
+        </Col>
+      </Row>
     </>
   );
 

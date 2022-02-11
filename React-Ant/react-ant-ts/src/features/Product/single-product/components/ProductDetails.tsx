@@ -25,7 +25,7 @@ function ProductDetails({ prod }: Props) {
 
   function addMessage() {
     message
-      .loading("Adding to cart...", 2.5)
+      .loading("Adding to cart...", 1)
       .then(() => message.info("Product added to cart."));
   }
 
